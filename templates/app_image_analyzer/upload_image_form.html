@@ -5,10 +5,20 @@
 {% endblock %}
 
 {% block content %}
-        <h2>Загрузка файла изображения</h2>
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Загрузить</button>
-        </form>
+    <div class="mb-4"><h2>Загрузка файла изображения</h2></div>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="mb-3">
+                {% if field.errors %}
+                    <div class="alert alert-danger">
+                        {{ field.errors }}
+                    </div>
+                {% endif %}
+                {{ field.label }}
+                {{ field }}
+            </div>
+        {% endfor %}
+        <button class="btn btn-primary" type="submit">Отправить</button>
+    </form>
 {% endblock %}

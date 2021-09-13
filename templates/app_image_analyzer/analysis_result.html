@@ -5,8 +5,20 @@
 {% endblock %}
 
 {% block content %}
-        <h2>Результат анализа</h2>
+        <div class="mb-4"><h2>Результат анализа</h2></div>
+        <p><b>{% if black_pixel_count > white_pixel_count %}
+                Черных пикселей больше белых на изображении
+        {% elif black_pixel_count < white_pixel_count %}
+                Белых пикселей больше черных на изображении
+        {% else %}
+                Одинаковое количество белых и черных пикселей на изображении
+        {% endif %}</b></p>
+
+        {% if search_color %}
+                <p><b>А пикселей искомого цвета {{ search_color }}: {{ search_color_pixel }}</b></p>
+        {% endif %}
         <p>Имя файла: {{ file_name }}</p>
-        <p>Результат анализа: {{ analysis_result }}</p>
+        <p>Черных пикселей: {{ black_pixel_count }}</p>
+        <p>Белых пикселей: {{ white_pixel_count }}</p>
         <hr><p><a href="{% url 'analyzer:upload_image' %}">Вернуться на страницу загрузки изображения</a></p>
 {% endblock %}

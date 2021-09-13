@@ -21,9 +21,14 @@ class UploadAndAnalyzeImageView(View):
         if form.is_valid():
             image = form.cleaned_data.get('image')
             hex_code = form.cleaned_data.get('hex_code')
+            black_pixel_count, white_pixel_count, search_color_pixel = \
+                get_analysis_result(image_file=image, hex_code=hex_code)
             context = {
                 'file_name': image.name,
-                'analysis_result': get_analysis_result(image),
+                'black_pixel_count': black_pixel_count,
+                'white_pixel_count': white_pixel_count,
+                'search_color': hex_code,
+                'search_color_pixel': search_color_pixel,
             }
             return render(request, self.analysis_result_template,
                           context=context)
