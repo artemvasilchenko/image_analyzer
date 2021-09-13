@@ -8,4 +8,5 @@
         <h2>Результат анализа</h2>
         <p>Имя файла: {{ file_name }}</p>
         <p>Результат анализа: {{ analysis_result }}</p>
+        <hr><p><a href="{% url 'analyzer:upload_image' %}">Вернуться на страницу загрузки изображения</a></p>
 {% endblock %}

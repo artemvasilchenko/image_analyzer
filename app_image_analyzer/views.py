@@ -1,8 +1,8 @@
-from django.http import HttpResponse
 from django.shortcuts import render
 from django.views import View
 
 from app_image_analyzer.forms import UploadImageForm
+from app_image_analyzer.utils import get_analysis_result
 
 
 class UploadAndAnalyzeImageView(View):
@@ -19,10 +19,11 @@ class UploadAndAnalyzeImageView(View):
     def post(self, request):
         form = UploadImageForm(request.POST, request.FILES)
         if form.is_valid():
-            image = form.cleaned_data['image']
+            image = form.cleaned_data.get('image')
+            hex_code = form.cleaned_data.get('hex_code')
             context = {
                 'file_name': image.name,
-                'analysis_result': None,
+                'analysis_result': get_analysis_result(image),
             }
             return render(request, self.analysis_result_template,
                           context=context)
