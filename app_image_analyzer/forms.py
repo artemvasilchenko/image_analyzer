@@ -17,6 +17,6 @@ class UploadImageForm(forms.Form):
             RegexValidator(regex='^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$')
         ],
         error_messages={
-            'invalid': 'Не корректный HEX-код. Примеры: #FFFFFF, #fff, #000'
+            'invalid': 'Некорректный HEX-код. Примеры: #FFFFFF, #fff, #000'
         },
     )

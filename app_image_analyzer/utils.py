@@ -22,7 +22,6 @@ def get_analysis_result(image_file: InMemoryUploadedFile,
     """
     search_color = hex_to_tuple(hex_code) if hex_code else None
     with Image.open(image_file).convert('RGB') as image:
-
         black_pixel_count: int = 0
         white_pixel_count: int = 0
         search_color_count: int = 0 if search_color else None
@@ -36,7 +35,7 @@ def get_analysis_result(image_file: InMemoryUploadedFile,
         return black_pixel_count, white_pixel_count, search_color_count
 
 
-def hex_to_tuple(hex_code: str) -> Tuple[int, int, int]:
+def hex_to_tuple(hex_code: str) -> Optional[Tuple[int, int, int]]:
     """
     Переводит HEX-код в decimal-код цвета в виде кортежа (R, G, B)
 
@@ -46,4 +45,8 @@ def hex_to_tuple(hex_code: str) -> Tuple[int, int, int]:
     hex_code = hex_code[1:]
     if len(hex_code) == 3:
         hex_code = ''.join([2 * ch for ch in hex_code])
-    return tuple(bytearray.fromhex(hex_code))
+    try:
+        result = tuple(bytearray.fromhex(hex_code))
+    except ValueError:
+        result = None
+    return result
