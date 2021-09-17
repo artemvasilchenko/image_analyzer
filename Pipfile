@@ -10,6 +10,7 @@ flake8 = "*"
 django = "*"
 json-log-formatter = "*"
 pillow = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.9"
