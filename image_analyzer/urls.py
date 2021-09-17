@@ -1,6 +1,4 @@
-"""image_analyzer URL Configuration
-
-"""
+"""image_analyzer URL Configuration"""
 from django.urls import path, include
 
 urlpatterns = [

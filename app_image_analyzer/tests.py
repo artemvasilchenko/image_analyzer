@@ -1,4 +1,6 @@
-from django.test import TestCase
+import logging
+
+from django.test import SimpleTestCase
 from django.urls import reverse
 from django.core.files.uploadedfile import SimpleUploadedFile
 
@@ -41,7 +43,13 @@ def get_image_test_file(file_content: bytes) -> SimpleUploadedFile:
     return image_file
 
 
-class HexToTupleTest(TestCase):
+class HexToTupleTest(SimpleTestCase):
+    def setUp(self):
+        logging.disable(logging.CRITICAL)
+
+    def tearDown(self):
+        logging.disable(logging.NOTSET)
+
     def test_hex_to_tuple_1(self):
         hex_code = '#FFFFFF'
         self.assertEqual(hex_to_tuple(hex_code), (255, 255, 255))
@@ -71,7 +79,13 @@ class HexToTupleTest(TestCase):
         self.assertIsNone(hex_to_tuple(hex_code))
 
 
-class GetAnalysisResult(TestCase):
+class GetAnalysisResult(SimpleTestCase):
+    def setUp(self):
+        logging.disable(logging.CRITICAL)
+
+    def tearDown(self):
+        logging.disable(logging.NOTSET)
+
     def test_only_image(self):
         image = get_image_test_file(CONTENT_WHITE_MORE_THAN_BLACK)
         self.assertEqual(get_analysis_result(image), (2, 10, None))
@@ -119,7 +133,13 @@ class GetAnalysisResult(TestCase):
         self.assertEqual(result, (2, 10, None))
 
 
-class UploadAndAnalyzeImageViewTest(TestCase):
+class UploadAndAnalyzeImageViewTest(SimpleTestCase):
+    def setUp(self):
+        logging.disable(logging.CRITICAL)
+
+    def tearDown(self):
+        logging.disable(logging.NOTSET)
+
     def test_get_req_to_analyze_image_url(self):
         """
         Тест url-адреса.
