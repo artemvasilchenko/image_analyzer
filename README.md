@@ -12,6 +12,7 @@ Image analyzer
 [3. Загрузка изображения и ввод HEX-кода искомого цвета](#upload_image)  
 [4. Запуск тестов](#testing)  
 [5. Просмотр JSON-логов запросов и ответов сервиса](#logging)  
+[6. Библиотеки используемые в проекте](#libs)
 
 <a name="docker"><h2>1. Сборка и запуск проекта c помощью docker</h2></a> 
 
@@ -99,7 +100,7 @@ cd ~/image_analyzer
 ```
 
 Все зависимости указаны в `Pipfile` и `Pipfile.lock` в корне проекта.  
-Установка python-зависимостей проекта - `django`, `gunicorn`, `json-log-formatter`, `pillow`
+Установка python-зависимостей проекта - `django`, `gunicorn`, `JSON-log-formatter`, `pillow`
 ```bash
 pipenv install
 ```
@@ -171,3 +172,10 @@ cd ~/image_analyzer
 ```bash
 cat app.log
 ```
+
+<a name="libs"><h2>6. Библиотеки используемые в проекте</h2></a>
+- [django](https://www.djangoproject.com/ "django") - python web-framework
+- [JSON-log-formatter](https://pypi.org/project/JSON-log-formatter/ "JSON-log-formatter")  - библиотека для форматирования логов в JSON-формат
+- [gunicorn](https://gunicorn.org/ "gunicorn")  - python WSGI HTTP сервер для UNIX
+- [pillow](https://pillow.readthedocs.io/en/stable/ "pillow") - библиотека для работы с изображениями  
+Все зависимости указаны в `Pipfile` и `Pipfile.lock` в корне проекта.  
