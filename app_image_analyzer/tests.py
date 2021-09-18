@@ -44,6 +44,9 @@ def get_image_test_file(file_content: bytes) -> SimpleUploadedFile:
 
 
 class HexToTupleTest(SimpleTestCase):
+    """
+    Тестирование функции преобразования HEX-кода в RGB-кортеж.
+    """
     def setUp(self):
         logging.disable(logging.CRITICAL)
 
@@ -80,6 +83,10 @@ class HexToTupleTest(SimpleTestCase):
 
 
 class GetAnalysisResult(SimpleTestCase):
+    """
+    Тестирование функции подсчета черных, белых пикселей и пикселей
+    искомого цвета.
+    """
     def setUp(self):
         logging.disable(logging.CRITICAL)
 
@@ -134,6 +141,9 @@ class GetAnalysisResult(SimpleTestCase):
 
 
 class UploadAndAnalyzeImageViewTest(SimpleTestCase):
+    """
+    Тестирование работы приложения.
+    """
     def setUp(self):
         logging.disable(logging.CRITICAL)
 

@@ -3,6 +3,9 @@ from django.core.validators import RegexValidator, FileExtensionValidator
 
 
 class UploadImageForm(forms.Form):
+    """
+    Форма загрузки изображения и ввода HEX-кода искомого цвета.
+    """
     image = forms.ImageField(
         label='Файл изображения',
         validators=[

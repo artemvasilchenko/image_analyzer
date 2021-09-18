@@ -10,10 +10,17 @@ logger = logging.getLogger(__name__)
 
 
 class UploadAndAnalyzeImageView(View):
+    """
+    View для загрузки изображения и HEX-кода в html-форму, обработки данных
+    и возврата результата анализа в html-страницу.
+    """
     upload_image_template = 'app_image_analyzer/upload_image_form.html'
     analysis_result_template = 'app_image_analyzer/analysis_result.html'
 
     def get(self, request):
+        """
+        Обработка GET-запроса.
+        """
         logger.info('GET request from user')
 
         form = UploadImageForm()
@@ -23,6 +30,9 @@ class UploadAndAnalyzeImageView(View):
         return render(request, self.upload_image_template, context=context)
 
     def post(self, request):
+        """
+        Обработка POST-запроса.
+        """
         logger.info('POST request from user')
 
         form = UploadImageForm(request.POST, request.FILES)
