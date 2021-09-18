@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 class UploadAndAnalyzeImageView(View):
     """
     View для загрузки изображения и HEX-кода в html-форму, обработки данных
-    и возврата результата анализа в html-страницу.
+    и возврата результата анализа на html-страницу.
     """
     upload_image_template = 'app_image_analyzer/upload_image_form.html'
     analysis_result_template = 'app_image_analyzer/analysis_result.html'
