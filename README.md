@@ -18,11 +18,11 @@ Image analyzer
 Перед сборкой и запуском необходимо установить [docker](https://docs.docker.com/engine/install/ "docker").
 
 #### 1.1. Клонирование репозитория
-Переход в домашнюю директорию
 Установка `git`
 ```bash
 sudo apt install git
 ```
+Переход в домашнюю директорию
 ```bash
 cd ~
 ```
@@ -78,11 +78,6 @@ cd ~
 git clone https://github.com/artemvasilchenko/image_analyzer.git
 ```
 
-Все дальнейшие команды необходимо запускать из директории проекта
-```bash
-cd ~/image_analyzer
-```
-
 <a name="requirements"><h4>2.2. Установка зависимостей</h4></a> 
 
 Для работы приложения требуется установить [python 3.9](https://www.python.org/downloads/release/python-390/), 
@@ -90,12 +85,17 @@ cd ~/image_analyzer
 
 Установка pip
 ```bash
-pip install pip
+sudo apt install python3-pip
 ```
 
 Установка pipenv
 ```bash
-pip install pipenv
+sudo pip install pipenv
+```
+
+Все дальнейшие команды необходимо запускать из директории проекта
+```bash
+cd ~/image_analyzer
 ```
 
 Все зависимости указаны в `Pipfile` и `Pipfile.lock` в корне проекта.  
@@ -103,7 +103,6 @@ pip install pipenv
 ```bash
 pipenv install
 ```
-
 Активация виртуального окружения
 ```bash
 pipenv shell
@@ -111,14 +110,23 @@ pipenv shell
 После установки зависимостей можно перейти [тестированию](#hand_testing)
 
 #### 2.3. Запуск приложения
+Все дальнейшие команды необходимо запускать из директории проекта
+```bash
+cd ~/image_analyzer
+```
+
 
 ```bash
-gunicorn -b 0.0.0.0:8000 image_analyzer.wsgi:application
+gunicorn -b 0.0.0.0:8000 image_analyzer.wsgi:application &
 ```
 После запуска приложения можно перейти к [загрузке изображения и вводу HEX-кода](#upload_image) и к
 просмотру [JSON-логов запросов и ответов сервиса](#logging)  
 
-#### 2.4. После окончания работы с сервисом необходимо остановить приложение нажатием клавиш `Ctrl` + `c`
+#### 2.4. После окончания работы с сервисом необходимо остановить приложение
+
+```bash
+pkill gunicorn
+```
 
 <a name="upload_image"><h2>3. Загрузка изображения и ввод HEX-кода искомого цвета</h2></a>
 
@@ -128,6 +136,7 @@ gunicorn -b 0.0.0.0:8000 image_analyzer.wsgi:application
 
 #### 3.3. На загрузившейся HTML-странице в форме выбрать изображение и ввести HEX-код
 
+Поддерживаемые форматы изображений - jpg, jpeg, gif, bmp, png  
 HEX-код можно вводить в следующих форматах: `#FFF`, `#FFFFFF`, `#ffffff`, `#fff`  
 При отсутствии HEX-кода - поиск по нему не осуществляется и в результате анализа
 будут отображены результаты только по количеству черных и белых пикселей
